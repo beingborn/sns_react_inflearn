@@ -1,22 +1,34 @@
-import { useDeleteTodo } from "@/store/todos";
+import { deleteTodo } from "@/api/delete-todo";
+import { useMutation } from "@tanstack/react-query";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export default function TodoItem({
     id,
     content,
 }: {
-    id: number;
+    id: string;
     content: string;
 }) {
-    const deleteTodo = useDeleteTodo();
+    const { mutate } = useMutation({
+        mutationFn: deleteTodo,
+        onMutate: () => {},
+        onSuccess: () => {
+            alert("삭제 성공!");
+            window.location.reload();
+        },
+        onError: (error) => {
+            alert(error.message);
+        },
+    });
 
     const handleDeleteClick = () => {
-        deleteTodo(id);
+        mutate(id);
     };
 
     return (
         <div className="flex items-center justify-between border p-2">
-            {content}
+            <Link to={`/todolist/${id}`}>{content}</Link>
             <Button variant="destructive" onClick={handleDeleteClick}>
                 삭제
             </Button>

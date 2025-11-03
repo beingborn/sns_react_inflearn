@@ -1,19 +1,24 @@
 {
-    "todos": [
-        {
-            "id": 1,
-            "content": "Todo 1",
-            "isDone": true
-        },
-        {
-            "id": 2,
-            "content": "Todo 2",
-            "isDone": false
-        },
-        {
-            "id": 3,
-            "content": "Todo 3",
-            "isDone": true
-        }
-    ]
+  "todos": [
+    {
+      "id": "1",
+      "content": "Todo 1",
+      "isDone": true
+    },
+    {
+      "id": "2",
+      "content": "Todo 2",
+      "isDone": false
+    },
+    {
+      "id": "3",
+      "content": "Todo 3",
+      "isDone": true
+    },
+    {
+      "id": "e449",
+      "content": "새로운 할일!",
+      "isDone": false
+    }
+  ]
 }
