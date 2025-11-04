@@ -1,4 +1,5 @@
 import { fetchTodoById } from "@/api/fetch-todo-by-id";
+import { QUERY_KEYS } from "@/lib/constants";
 import { useQuery } from "@tanstack/react-query";
 
 /*
@@ -20,7 +21,7 @@ export function useTodoDataById(id: string) {
     return useQuery({
         queryFn: () => fetchTodoById(id),
         // 각각 아이템을 캐싱하기 위해서 id값 생성
-        queryKey: ["todos", id],
+        queryKey: QUERY_KEYS.todo.detail(id),
         staleTime: 5000,
         // refetchOnMount: false,
         // refetchOnWindowFocus: false,
