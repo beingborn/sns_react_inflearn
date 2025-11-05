@@ -1,34 +1,32 @@
-import { deleteTodo } from "@/api/delete-todo";
-import { useMutation } from "@tanstack/react-query";
+import { useUpdateTodoMutation } from "@/hooks/mutations/use-update-todo-mutation";
+import type { Todo } from "@/types";
 import { Link } from "react-router";
 import { Button } from "../ui/button";
 
-export default function TodoItem({
-    id,
-    content,
-}: {
-    id: string;
-    content: string;
-}) {
-    const { mutate } = useMutation({
-        mutationFn: deleteTodo,
-        onMutate: () => {},
-        onSuccess: () => {
-            alert("삭제 성공!");
-            window.location.reload();
-        },
-        onError: (error) => {
-            alert(error.message);
-        },
-    });
+export default function TodoItem({ id, content, isDone }: Todo) {
+    const { mutate } = useUpdateTodoMutation();
 
     const handleDeleteClick = () => {
-        mutate(id);
+        // mutate(id);
+    };
+
+    const handleCheckboxClick = () => {
+        mutate({
+            id,
+            isDone: !isDone,
+        });
     };
 
     return (
         <div className="flex items-center justify-between border p-2">
-            <Link to={`/todolist/${id}`}>{content}</Link>
+            <div className="flex gap-5">
+                <input
+                    type="checkbox"
+                    checked={isDone}
+                    onClick={handleCheckboxClick}
+                />
+                <Link to={`/todolist/${id}`}>{content}</Link>
+            </div>
             <Button variant="destructive" onClick={handleDeleteClick}>
                 삭제
             </Button>

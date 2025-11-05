@@ -3,36 +3,16 @@
     {
       "id": "1",
       "content": "Todo 1",
-      "isDone": true
-    },
-    {
-      "id": "2",
-      "content": "Todo 2",
       "isDone": false
     },
     {
-      "id": "3",
-      "content": "Todo 3",
-      "isDone": true
-    },
-    {
-      "id": "e449",
-      "content": "새로운 할일!",
+      "id": "cfe1",
+      "content": "쿼리키로 넣어야한다?",
       "isDone": false
     },
     {
-      "id": "89ee",
-      "content": "오 새로운데",
-      "isDone": false
-    },
-    {
-      "id": "5462",
-      "content": "안녕",
-      "isDone": false
-    },
-    {
-      "id": "1d45",
-      "content": "으음",
+      "id": "c325",
+      "content": "안녕안여",
       "isDone": false
     }
   ]
