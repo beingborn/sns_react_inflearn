@@ -17,12 +17,13 @@ import { useQuery } from "@tanstack/react-query";
     데이터를 다시 불러옴
 */
 
-export function useTodoDataById(id: string) {
+export function useTodoDataById(id: string, type: "LIST" | "DETAIL") {
     return useQuery({
         queryFn: () => fetchTodoById(id),
         // 각각 아이템을 캐싱하기 위해서 id값 생성
         queryKey: QUERY_KEYS.todo.detail(id),
-        staleTime: 5000,
+        staleTime: 1000,
+        enabled: type == "DETAIL",
         // refetchOnMount: false,
         // refetchOnWindowFocus: false,
         // refetchOnReconnect: false,

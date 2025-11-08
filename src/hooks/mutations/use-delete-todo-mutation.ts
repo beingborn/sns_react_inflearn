@@ -1,4 +1,5 @@
 import { deleteTodo } from "@/api/delete-todo";
+import { QUERY_KEYS } from "@/lib/constants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useDeleteTodoMutation() {
@@ -10,5 +11,31 @@ export function useDeleteTodoMutation() {
         // 1. 캐시 무효화 -> invalidateQueries
         // 2. 수정 요청의 응답값 활용 -> onSuccess
         // 3. 낙관적 업데이트 -> onMutate
+
+        // onSuccess: (deletedTodo) => {
+        //     queryClient.setQueriesData<Todo[]>(
+        //         { queryKey: QUERY_KEYS.todo.list },
+        //         (prevTodos) => {
+        //             if (!prevTodos) return [];
+        //             return prevTodos.filter(
+        //                 (prevTodo) => prevTodo.id !== deletedTodo.id,
+        //             );
+        //         },
+        //     );
+        // },
+
+        onSuccess: (deletedTodo) => {
+            queryClient.removeQueries({
+                queryKey: QUERY_KEYS.todo.detail(deletedTodo.id),
+            });
+
+            queryClient.setQueryData<string[]>(
+                QUERY_KEYS.todo.list,
+                (prevTodoIds) => {
+                    if (!prevTodoIds) return [];
+                    return prevTodoIds.filter((id) => id !== deletedTodo.id);
+                },
+            );
+        },
     });
 }

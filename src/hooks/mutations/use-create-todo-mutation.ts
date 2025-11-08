@@ -23,11 +23,26 @@ export function useCreateTodoMutation() {
             //     queryKey: QUERY_KEYS.todo.list,
             // });
             // onSuccess에는 motationFn의 반환값이 제공된다.
+            /* 
             queryClient.setQueriesData<Todo[]>(
                 { queryKey: QUERY_KEYS.todo.list },
                 (prevTodos) => {
                     if (!prevTodos) return [newTodo];
                     return [...prevTodos, newTodo];
+                },
+            );
+            */
+
+            queryClient.setQueryData<Todo>(
+                QUERY_KEYS.todo.detail(newTodo.id),
+                newTodo,
+            );
+
+            queryClient.setQueryData<string[]>(
+                QUERY_KEYS.todo.list,
+                (prevTodoIds) => {
+                    if (!prevTodoIds) return [newTodo.id];
+                    return [...prevTodoIds, newTodo.id];
                 },
             );
         },

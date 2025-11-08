@@ -1,18 +1,13 @@
 {
   "todos": [
     {
-      "id": "cfe1",
-      "content": "쿼리키로 넣어야한다?",
+      "id": "eee1",
+      "content": "뭐야 왜 안나와",
       "isDone": false
     },
     {
-      "id": "c325",
-      "content": "안녕안여",
-      "isDone": false
-    },
-    {
-      "id": "7829",
-      "content": "그래도 이번 프로젝트 통해서 캐시, 그리고 쿼리키라는 걸 통해 바로 실제 반영 되는 좋아요 등을 알게되었어",
+      "id": "f27b",
+      "content": "쿼리 아이디값이 잘나오는지 봐야하는거지",
       "isDone": false
     }
   ]
